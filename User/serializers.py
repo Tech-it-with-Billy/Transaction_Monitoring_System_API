@@ -8,8 +8,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ['id', 'username', 'email', 'password', 'role']
     
-    def create(self, validate_data):
-        user = CustomUser.objects.create_user(**validate_data)
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(**validated_data)
         return user
 
 class ProfileSerializer(serializers.ModelSerializer):

@@ -8,6 +8,6 @@ urlpatterns = [
     path('api/auth/login/', TokenObtainPairView.as_view(), name='login'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/user/profile/', ProfileView.as_view(), name='profile'),
-    path('api/users/', UserListView.as_view(), name='analyst'),
-    path('api/user/admin/', AdminUserDetailView.as_view(), name='admin')
+    path('api/users/', UserListView.as_view(), name='user_list'),
+    path('api/user/<uuid:pk>/', AdminUserDetailView.as_view(), name='admin')
 ]
