@@ -17,7 +17,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
     
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
-            raise serializers.ValidationError('Passwords no matching!')
+            raise serializers.ValidationError('Passwords do not matching!')
         return attrs
     
     def create(self, validated_data):
@@ -27,23 +27,26 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.ModelSerializer):
     email = serializers.CharField()
-    password = serializers.ChoiceField()
+    password = serializers.CharField()
     
-    if not email or not password:
-        raise serializers.ValidationError('Both email and password required!')
+    class Meta:
+        model = User
+        fields = ['email', 'password']
     
     def validate(self, attrs):
         email = attrs.get('email')
         password = attrs.get('password')
         
+        if not email or not password:
+            raise serializers.ValidationError('Both email and password required!')
+        
         user = authenticate(email=email, password=password)
         if not user:
             raise serializers.ValidationError('Please input correct email and password!')
-        return 'Login Successful!'
         
         attrs['user'] = user
         return attrs
 
 class ProfileSerializer(serializers.ModelSerializer):
     model = User
-    fields = ['id', 'firstname', 'lastname', 'email', 'role', 'phone_number']
+    fields = ['id', 'firstname', 'lastname', 'email', 'role', 'phone_number', 'created_at', 'updated_at']
