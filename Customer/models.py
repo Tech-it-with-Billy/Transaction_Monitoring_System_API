@@ -9,13 +9,17 @@ class Customer(models.Model):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, unique=True)
     address = models.CharField(max_length=225)
-    created_by = models.CharField(
-        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, 
-        related_name='customers_created', null=True, blank=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.SET_NULL,
+        related_name='customers_created', 
+        null=True, 
+        blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     account_number = models.BigIntegerField(unique=True)
-    account_balance = models.DecimalField(max_digits= 12, decimal_place=2, default=0.00)
+    account_balance = models.DecimalField(max_digits= 12, decimal_places=2, default=0.00)
     
     def __str__(self):
         return f'Account: {self.first_name} {self.last_name}  Balance: {self.account_balance}'
