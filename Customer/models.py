@@ -13,7 +13,7 @@ class Customer(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, 
         related_name='customers_created', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     account_number = models.BigIntegerField(unique=True)
     account_balance = models.DecimalField(max_digits= 12, decimal_place=2, default=0.00)
     
