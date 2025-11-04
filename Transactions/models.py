@@ -5,14 +5,14 @@ from Customer.models import Customer
 
 class Transaction(models.Model):
     STATUS = (
-        ('pending': 'pending'),
-        ('completed': 'completed'),
-        ('failed': 'failed')
+        ('pending', 'pending'),
+        ('completed', 'completed'),
+        ('failed', 'failed'),
     )
     
     TRANSACTION_TYPE  = (
-        ('withdrawal': 'withdrawal'),
-        ('deposit': 'deposit')
+        ('withdrawal', 'withdrawal'),
+        ('deposit', 'deposit'),
     )
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
