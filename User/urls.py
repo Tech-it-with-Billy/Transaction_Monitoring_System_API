@@ -5,5 +5,5 @@ urlpatterns = [
     path('api/user/register/', RegistrationView.as_view(), name='register user'),
     path('api/user/login/', LoginView.as_view(), name='user login'),
     path('api/user/profile/', ProfileView.as_view(), name='user profile'),
-    path('api/admin/', AdminView.as_view(), name='user manager')
+    path('api/admin/<uuid:pk>/', AdminView.as_view(), name='manage user'),
 ]
